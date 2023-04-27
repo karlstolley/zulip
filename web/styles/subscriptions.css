@@ -701,6 +701,12 @@ h4.user_group_setting_subsection_title {
             padding-top: 9px;
         }
 
+        @media (width > $md_min) {
+            .modal-footer {
+                border-radius: 0 0 6px;
+            }
+        }
+
         .add_all_users_to_user_group,
         .add_all_users_to_stream {
             margin-left: 10px;
