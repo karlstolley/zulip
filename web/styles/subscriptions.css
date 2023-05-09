@@ -293,7 +293,6 @@ h4.user_group_setting_subsection_title {
 
 .user-groups-container,
 .subscriptions-container {
-    position: relative;
     height: 95%;
     border-radius: 4px;
     padding: 0;
@@ -308,6 +307,7 @@ h4.user_group_setting_subsection_title {
 
     .user-groups-header,
     .subscriptions-header {
+        position: relative;
         padding: 12px;
         text-align: center;
         text-transform: uppercase;
@@ -1071,7 +1071,7 @@ div.settings-radio-input-parent {
 @media (width < $md_min) {
     .user-groups-container,
     .subscriptions-container {
-        position: relative;
+        position: relative; /* Needed for single-column positioning */
         overflow: hidden;
 
         .search-container {
