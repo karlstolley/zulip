@@ -293,13 +293,21 @@ h4.user_group_setting_subsection_title {
 
 .user-groups-container,
 .subscriptions-container {
-    height: 95%;
+    height: 95vh; /* Set container to a vh unit to make it easier to reason about */
     border-radius: 4px;
     padding: 0;
     width: 97%;
-    overflow: hidden;
+    overflow: clip; /* Containing grid itself will not scroll; but check with grid align/justify properties, which might be causing the left/right panel content to shift up over the header. */
     max-width: 1200px;
     max-height: 1000px;
+
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "left   right";
+    grid-template-columns: 1fr 1fr;
+    /* max-content row keeps header from expanding on shorter left & right panels */
+    grid-template-rows: max-content 1fr;
 
     .search-container .tab-switcher .ind-tab {
         width: auto;
@@ -314,13 +322,15 @@ h4.user_group_setting_subsection_title {
         font-weight: 700;
         border-bottom: 1px solid hsl(0deg 0% 87%);
 
+        grid-area: header;
+
         .fa-chevron-left {
             display: none;
         }
 
         .user-groups-title,
         .subscriptions-title {
-            display: inline-block;
+            /* display: inline-block; */
             transition: all 0.3s ease;
             transform: translate(-13px, 0);
         }
@@ -347,12 +357,22 @@ h4.user_group_setting_subsection_title {
 
     .left,
     .right {
+        /*
         position: relative;
         display: inline-block;
         vertical-align: top;
         width: 50%;
         height: calc(100% - 45px);
         margin: 0 -2px;
+        */
+        overflow: hidden; /* Permit scrolling on left & right panels */
+    }
+
+    .left {
+        grid-area: left;
+    }
+    .right {
+        grid-area: right;
     }
 
     .left .no-streams-to-show,
@@ -381,7 +401,7 @@ h4.user_group_setting_subsection_title {
     }
 
     .right {
-        width: calc(50% + 1px);
+        /* width: calc(50% + 1px); */
 
         .nothing-selected {
             & button {
@@ -690,15 +710,25 @@ h4.user_group_setting_subsection_title {
             /*
                 45px (.subscriptions-header) +  44px (.display-type) + 60px (.modal-footer) + 15px (padding for .simplebar-content)
             */
+
             height: calc(95vh - 164px);
+            /*
+            overflow: hidden;
+            /* Necessary on user groups, it seems, but breaks scrolling on streams... */
             padding: 15px 15px 0;
+
+            grid-area: body;
+            background: purple;
         }
 
         .modal-footer {
+            /*
             position: absolute;
             bottom: 0;
             width: calc(100% - 27px);
+            */
             padding-top: 9px;
+            grid-area: footer;
         }
 
         @media (width > $md_min) {
@@ -731,6 +761,16 @@ h4.user_group_setting_subsection_title {
         #stream_creation_form {
             margin: 0;
 
+            display: grid;
+            grid-template-areas:
+                "alert"
+                "indicator"
+                "body"
+                "footer";
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 1fr max-content;
+            height: calc(95vh - 89px); /* Full height minus modal header and Create stream */
+
             .user_group_create_info.show {
                 margin: 5px;
             }
@@ -746,6 +786,7 @@ h4.user_group_setting_subsection_title {
                     align-items: center;
                     background-color: hsl(0deg 0% 100% / 90%);
                     z-index: 1;
+                    grid-area: indicator;
                 }
 
                 .loading_indicator_text {
@@ -1034,8 +1075,11 @@ div.settings-radio-input-parent {
     .user-groups-container,
     .subscriptions-container {
         max-width: 95%;
+        display: grid;
+        grid-template-columns: 40% 60%;
     }
 
+/*
     #groups_overlay,
     #subscription_overlay {
         .left {
@@ -1046,6 +1090,7 @@ div.settings-radio-input-parent {
             width: calc(60% - 1px);
         }
     }
+*/
 }
 
 @media (width < $lg_min) {
@@ -1073,6 +1118,8 @@ div.settings-radio-input-parent {
     .subscriptions-container {
         position: relative; /* Needed for single-column positioning */
         overflow: hidden;
+
+        display: initial; /* No grid at small sizes */
 
         .search-container {
             text-align: left;
