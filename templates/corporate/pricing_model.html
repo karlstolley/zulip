@@ -30,6 +30,21 @@
             </div>
             {% endif %}
 
+            <!-- Scroll controls are placed with CSS Grid,
+            on `.pricing-container`, so we stack them
+            here, side by side, because their order in
+            the source doesn't affect their layout. -->
+            <div class="lefthand-scroll-control-area">
+                <div class="lefthand-scroll-button">
+                    <i class="icon icon-chevron-left"></i>
+                </div>
+            </div>
+            <div class="righthand-scroll-control-area">
+                <div class="righthand-scroll-button">
+                    <i class="icon icon-chevron-right"></i>
+                </div>
+            </div>
+
             <div class="pricing-pane-scroll-container cloud-scroll">
                 <div class="cloud-plan-pricing pricing-pane">
                     <div class="price-box" tabindex="-1">
