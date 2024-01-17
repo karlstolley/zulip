@@ -196,7 +196,15 @@
     .pricing-pane-scroll-container {
         grid-area: pricing;
         overflow-x: auto;
+        /* Hide scrollbars in IE */
+        -ms-overflow-style: none;
+        /* Hide scrollbars in Firefox */
         scrollbar-width: none;
+    }
+
+    /* Hide scrollbars in Chrome, Safari, Opera */
+    .pricing-pane-scroll-container::-webkit-scrollbar {
+        display: none;
     }
 
     .cloud-plan-title {
