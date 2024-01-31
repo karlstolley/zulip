@@ -24,8 +24,8 @@ const apps_events = function () {
             alt: "macOS",
             description:
                 "Zulip on macOS is even better than Zulip on the web, with a cleaner look, tray integration, native notifications, and support for multiple Zulip accounts.",
-            download_link: "/apps/download/mac",
-            mac_arm64_link: "/apps/download/mac-arm64",
+            download_link: "/apps/download/mac-arm64",
+            mac_intel_link: "/apps/download/mac",
             show_instructions: true,
             install_guide: "/help/desktop-app-install-guide",
             app_type: "desktop",
@@ -79,7 +79,7 @@ const apps_events = function () {
         const $download_from_google_play_store = $(".download-from-google-play-store");
         const $download_from_apple_app_store = $(".download-from-apple-app-store");
         const $download_from_microsoft_store = $("#download-from-microsoft-store");
-        const $download_mac_arm64 = $("#download-mac-arm64");
+        const $download_mac_intel = $("#download-mac-intel");
         const $desktop_download_link = $(".desktop-download-link");
         const version_info = info[version];
 
@@ -89,7 +89,7 @@ const apps_events = function () {
         $download_from_google_play_store.attr("href", version_info.play_store_link);
         $download_from_apple_app_store.attr("href", version_info.app_store_link);
         $download_android_apk.attr("href", version_info.download_link);
-        $download_mac_arm64.attr("href", version_info.mac_arm64_link);
+        $download_mac_intel.attr("href", version_info.mac_intel_link);
         $download_instructions.find("a").attr("href", version_info.install_guide);
 
         $download_instructions.toggle(version_info.show_instructions);
@@ -100,7 +100,7 @@ const apps_events = function () {
         $download_from_google_play_store.toggle(version === "android");
         $download_from_apple_app_store.toggle(version === "ios");
         $download_from_microsoft_store.toggle(version === "windows");
-        $download_mac_arm64.toggle(version === "mac");
+        $download_mac_intel.toggle(version === "mac");
     };
 
     // init
