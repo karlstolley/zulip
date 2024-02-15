@@ -27,6 +27,9 @@
     }
 
     @media (width < $md_min) {
+        /* Allow JavaScript to detect when this media
+           query has been applied. */
+        --query-md-min-active: true;
         --search-box-width: 40px;
     }
 

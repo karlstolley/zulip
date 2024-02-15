@@ -1701,11 +1701,6 @@ $option_title_width: 180px;
         }
     }
 
-    #settings_overlay_container {
-        /* this variable allows JavaScript to detect this media query */
-        --single-column: yes;
-    }
-
     #settings_page {
         .settings-header.mobile {
             display: block;

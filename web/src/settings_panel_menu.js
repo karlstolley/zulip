@@ -18,7 +18,7 @@ export function mobile_deactivate_section() {
 }
 
 function two_column_mode() {
-    return $("#settings_overlay_container").css("--single-column") === undefined;
+    return $("html").css("--query-md-min-active") === undefined;
 }
 
 function set_settings_header(key) {
