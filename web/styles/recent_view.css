@@ -241,6 +241,19 @@
             align-items: center;
         }
 
+
+        .user_status_icon_wrapper:has(.status-emoji) {
+            display: inline-grid;
+            grid-template-columns: minmax(0, 1fr) min-content;
+
+            .user-name {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+
         .flex_container .right_part {
             margin-left: auto;
             display: inline-flex;
