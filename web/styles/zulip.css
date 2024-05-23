@@ -238,6 +238,8 @@ p.n-margin {
 }
 
 #navbar-fixed-container {
+    font-size: var(--base-font-size-px);
+    line-height: var(--base-line-height-unitless);
     position: fixed;
     top: 0;
     z-index: 102;
@@ -539,6 +541,8 @@ body.has-overlay-scrollbar {
 }
 
 .app-main {
+    font-size: var(--base-font-size-px);
+    line-height: var(--base-line-height-unitless);
     height: 100%;
     min-height: 100%;
 
