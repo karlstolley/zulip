@@ -72,7 +72,7 @@
         var(--markdown-interelement-space-px) * 2
     );
 
-    .more-dense-mode {
+    .more-dense-mode:not(.spectator-view) {
         /* The legacy values here are not altered by JavaScript */
         --base-font-size-px: 14px;
         --base-line-height-unitless: 1.214;
