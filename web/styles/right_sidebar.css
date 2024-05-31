@@ -56,7 +56,7 @@ $user_status_emoji_width: 24px;
 #buddy-list-users-matching-view,
 #buddy-list-other-users {
     width: 90%;
-    margin-left: 10px;
+    margin-left: 0;
     margin-bottom: 0;
     overflow-x: hidden;
     list-style-position: inside; /* Draw the bullets inside our box */
@@ -120,7 +120,7 @@ $user_status_emoji_width: 24px;
         width: 8px;
         height: 8px;
         grid-area: starting-anchor-element;
-        place-self: center center;
+        place-self: center start;
     }
 
     .empty-list-message {
@@ -171,7 +171,7 @@ $user_status_emoji_width: 24px;
     user-select: none;
     font-weight: 600;
     margin: 0;
-    padding: 5px;
+    padding: 5px 5px 5px 0;
 }
 
 .buddy-list-subsection-header.no-display {
@@ -193,7 +193,7 @@ $user_status_emoji_width: 24px;
     display: grid;
     grid-template:
         "starting-anchor-element row-content" var(--line-height-sidebar-row)
-        ".                       row-content" auto / 20px minmax(0, 1fr);
+        ".                       row-content" auto / 15px minmax(0, 1fr);
 }
 
 .user-presence-link {
