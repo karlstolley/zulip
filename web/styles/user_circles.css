@@ -3,6 +3,8 @@
 .user_circle_empty {
     border-radius: 50%;
     border: 1px solid;
+    background-color: red;
+    border-color: red;
 }
 
 .user_circle_green {
@@ -15,4 +17,14 @@
 
 .user_circle_empty {
     color: var(--color-user-circle-empty);
+}
+
+/* Temporary styles. Do not commit. */
+.zulip-icon.user_circle_green,
+.zulip-icon.user_circle_idle,
+.zulip-icon.user_circle_empty {
+    border-radius: unset;
+    border: unset;
+    background-color: unset;
+    border-color: unset;
 }
