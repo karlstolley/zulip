@@ -240,6 +240,11 @@ li.show-more-topics {
             .zulip-icon {
                 opacity: 0.7;
             }
+
+            /* Don't apply opacity to status icons. */
+            .zulip-icon-user-status {
+                opacity: 1;
+            }
         }
 
         & li#show-more-direct-messages {
@@ -1101,21 +1106,6 @@ li.topic-list-item {
 
     .dm-name {
         grid-area: row-content;
-    }
-
-    .user_circle {
-        width: var(--length-user-status-circle);
-        height: var(--length-user-status-circle);
-
-        @media screen and (resolution <= 1x) {
-            /* User circles appear to sag a bit on
-               low-resolution screens, so this fix
-               targets them without disrupting
-               line-height values that may become
-               important in multi-line DM groups, etc.
-               in the future. */
-            margin-top: -2.5px;
-        }
     }
 
     .zulip-icon.zulip-icon-bot {
