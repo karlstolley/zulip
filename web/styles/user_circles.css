@@ -6,20 +6,13 @@
 }
 
 .user_circle_green {
-    background-color: var(--color-user-circle-active);
-    border-color: var(--color-user-circle-active);
+    color: var(--color-user-circle-active);
 }
 
 .user_circle_idle {
-    border-color: var(--color-user-circle-idle);
-    background: linear-gradient(
-        to bottom,
-        hsl(0deg 0% 100% / 0%) 50%,
-        var(--color-user-circle-idle) 50%
-    );
+    color: var(--color-user-circle-idle);
 }
 
 .user_circle_empty {
-    background-color: transparent;
-    border-color: hsl(0deg 0% 50%);
+    color: var(--color-user-circle-empty);
 }
