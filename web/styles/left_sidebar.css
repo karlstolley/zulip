@@ -11,6 +11,7 @@
 
 .left-sidebar-title {
     color: var(--color-text-sidebar-heading);
+    opacity: var(--opacity-sidebar-heading);
     font-size: inherit;
     font-weight: normal;
     display: inline;
@@ -268,7 +269,8 @@ li.show-more-topics {
 
 #toggle-direct-messages-section-icon,
 #toggle-top-left-navigation-area-icon {
-    opacity: 0.7;
+    color: var(--color-text-sidebar-heading);
+    opacity: var(--opacity-sidebar-heading);
 
     &.fa-caret-right {
         position: relative;
