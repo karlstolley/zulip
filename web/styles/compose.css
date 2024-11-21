@@ -462,6 +462,8 @@
     /* margin on either side to let the border of
        .message-content-container show through. */
     margin: 0 1px;
+    overflow-x: scroll;
+    scrollbar-width: none;
 }
 
 .message-limit-indicator:not(:empty) {
