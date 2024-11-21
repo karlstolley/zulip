@@ -456,6 +456,11 @@
     /* margin on either side to let the border of
        .message-content-container show through. */
     margin: 0 1px;
+    /* Disallow vertical scrolling with `clip`.
+       TODO: Correct and improve button layout
+       so there is no overflow-y to begin with. */
+    overflow: scroll clip;
+    scrollbar-width: none;
 }
 
 #compose-limit-indicator:not(:empty) {
