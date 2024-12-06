@@ -65,7 +65,13 @@ export let update_presence_indicators = (): void => {
         assert(!Number.isNaN(user_id));
         const user_circle_class = buddy_data.get_user_circle_class(user_id);
         $(this)
-            .removeClass("user-circle-active user-circle-idle user-circle-offline")
+            .removeClass(
+                `
+                user-circle-active zulip-icon-user-circle-active
+                user-circle-idle zulip-icon-user-circle-idle
+                user-circle-offline zulip-icon-user-circle-offline
+            `,
+            )
             .addClass(user_circle_class);
     });
 };
