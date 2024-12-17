@@ -462,8 +462,46 @@
     /* margin on either side to let the border of
        .message-content-container show through. */
     margin: 0 1px;
-    overflow-x: scroll;
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns:
+        [scroller-backward-start buttons-start] 48px [scroller-backward-end] minmax(
+            0,
+            1fr
+        )
+        [scroller-forward-start] 48px [scroller-forward-end buttons-end];
+    grid-template-rows: auto;
+
+    .compose-scrolling-buttons-container {
+        grid-area: buttons;
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+
+    .formatting-control-scroller-button {
+        z-index: 5;
+        display: flex;
+        align-items: center;
+
+        border-radius: 0;
+        border: 0;
+
+        color: var(--color-compose-scroll-icon);
+        background: transparent;
+    }
+
+    #formatting-control-scroller-backward {
+        grid-area: scroller-backward;
+        justify-content: flex-start;
+        border-radius: 0 0 0 3px;
+        background: var(--color-compose-background-scroll-backward);
+    }
+
+    #formatting-control-scroller-forward {
+        grid-area: scroller-forward;
+        justify-content: flex-end;
+        border-radius: 0 0 3px;
+        background: var(--color-compose-background-scroll-forward);
+    }
 }
 
 .message-limit-indicator:not(:empty) {
