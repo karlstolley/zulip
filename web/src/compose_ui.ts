@@ -4,6 +4,7 @@
 import autosize from "autosize";
 import $ from "jquery";
 import _ from "lodash";
+import assert from "minimalistic-assert";
 import {
     insertTextIntoField,
     replaceFieldText,
@@ -146,6 +147,27 @@ export function rewire_insert_and_scroll_into_view(
     value: typeof insert_and_scroll_into_view,
 ): void {
     insert_and_scroll_into_view = value;
+}
+
+export function maybe_show_scrolling_formatting_buttons(container_selector: string): void {
+    const visible_button_container = document.querySelector(container_selector);
+
+    if (!visible_button_container) {
+        return;
+    }
+
+    const visible_button_area_width = visible_button_container?.clientWidth;
+    const button_bar_width = document.querySelector(
+        `${container_selector} .compose-control-buttons-container`,
+    )?.scrollWidth;
+
+    assert(typeof visible_button_area_width === "number" && typeof button_bar_width === "number");
+
+    if (visible_button_area_width < button_bar_width) {
+        visible_button_container?.classList.add("can-scroll-forward");
+    } else {
+        visible_button_container?.classList.remove("can-scroll-forward", "can-scroll-backward");
+    }
 }
 
 function get_focus_area(opts: ComposeTriggeredOptions): string {
