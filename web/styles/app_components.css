@@ -801,6 +801,12 @@ input.settings_text_input {
             transition: opacity 100ms ease-out;
         }
 
+        &[data-sort] {
+            /* Keep the sort arrow on the same line
+               as the heading text. */
+            min-width: max-content;
+        }
+
         &[data-sort]:hover {
             cursor: pointer;
             background-color: hsl(0deg 0% 95%) !important;
