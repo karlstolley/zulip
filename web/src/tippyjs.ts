@@ -33,6 +33,15 @@ export function get_tooltip_content(reference: Element): string | Element | Docu
     return "";
 }
 
+// Tooltips that appear above an element, such as those in the
+// message area, need a font-size-aware offset value. This
+// function allows us to pass in a pixel value for 16px/1em,
+// which then gets calculated for the current user font-size
+// value.
+export function calculate_tippy_offset(offset_in_px_at_16: number): number {
+    return (offset_in_px_at_16 / 16) * user_settings.web_font_size_px;
+}
+
 // We use different delay settings for tooltips. The default "instant"
 // version has just a tiny bit of delay to create a natural feeling
 // transition, while the "long" version is intended for elements where

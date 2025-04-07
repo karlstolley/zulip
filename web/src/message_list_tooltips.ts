@@ -18,6 +18,7 @@ import * as timerender from "./timerender.ts";
 import {
     INTERACTIVE_HOVER_DELAY,
     LONG_HOVER_DELAY,
+    calculate_tippy_offset,
     topic_visibility_policy_tooltip_props,
 } from "./tippyjs.ts";
 import {parse_html} from "./ui_util.ts";
@@ -142,6 +143,8 @@ function get_time_string(timestamp: number): string {
 }
 
 export function initialize(): void {
+    const MESSAGE_LIST_VERTICAL_OFFSET = calculate_tippy_offset(-2);
+
     message_list_tooltip(".tippy-narrow-tooltip", {
         delay: LONG_HOVER_DELAY,
         onCreate(instance) {
@@ -225,6 +228,7 @@ export function initialize(): void {
 
     message_list_tooltip(".message_control_button", {
         delay: LONG_HOVER_DELAY,
+        offset: [0, MESSAGE_LIST_VERTICAL_OFFSET],
         onShow(instance) {
             // Handle dynamic "starred messages" and "edit" widgets.
             const $elem = $(instance.reference);
@@ -264,6 +268,7 @@ export function initialize(): void {
     });
 
     message_list_tooltip(".message-list .message-time", {
+        offset: [0, MESSAGE_LIST_VERTICAL_OFFSET],
         onShow(instance) {
             const $time_elem = $(instance.reference);
             const $row = $time_elem.closest(".message_row");
@@ -296,6 +301,7 @@ export function initialize(): void {
     });
 
     message_list_tooltip(".recipient_row_date > span", {
+        offset: [0, calculate_tippy_offset(2)],
         onHidden(instance) {
             instance.destroy();
         },
@@ -325,6 +331,7 @@ export function initialize(): void {
     );
 
     message_list_tooltip(".rendered_markdown time", {
+        offset: [0, MESSAGE_LIST_VERTICAL_OFFSET],
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         content: timerender.get_markdown_time_tooltip as tippy.Content,
         onHidden(instance) {
@@ -351,6 +358,7 @@ export function initialize(): void {
 
     message_list_tooltip(".view_user_card_tooltip", {
         delay: LONG_HOVER_DELAY,
+        offset: [0, MESSAGE_LIST_VERTICAL_OFFSET],
         onShow(instance) {
             const is_bot = $(instance.reference).attr("data-is-bot") === "true";
             if (is_bot) {
@@ -366,6 +374,7 @@ export function initialize(): void {
 
     message_list_tooltip(".message_edit_notice, .edit-notifications", {
         trigger: "mouseenter",
+        offset: [0, 4],
         delay: LONG_HOVER_DELAY,
         popperOptions: {
             modifiers: [
