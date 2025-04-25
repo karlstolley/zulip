@@ -160,8 +160,13 @@
                     display: flex;
                     align-items: center;
                     overflow: hidden;
-                    padding: 0 6px;
+                    padding: 0 6px 0 4px;
                     outline: 0;
+
+                    &:focus {
+                        outline: 2px solid var(--color-outline-focus);
+                        border-radius: 3px;
+                    }
 
                     & a {
                         margin: 0 4px;
@@ -175,13 +180,10 @@
                         display: flex;
                         align-items: center;
                         overflow: hidden;
-                        border: 2px solid transparent;
-                        border-radius: 3px;
-                        padding-left: 4px;
                     }
 
                     &:focus .inbox-header-name-focus-border {
-                        border-color: var(--color-outline-focus);
+                        border-color: ;
                     }
                 }
 
