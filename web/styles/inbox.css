@@ -143,23 +143,12 @@
                     var(--width-inbox-filters-dropdown) + 4.5em
             );
 
-            .inbox-focus-border {
-                display: flex;
-                min-height: 1.875em; /* 30px at 16px em */
-                border: 2px solid transparent;
-                border-radius: 3px;
-                box-sizing: border-box;
-                justify-content: space-between;
-            }
-
             .inbox-header {
                 user-select: none;
-                display: block;
+                display: flex;
+                box-sizing: border-box;
                 height: 1.875em; /* 30px at 16px em */
-
-                .inbox-focus-border {
-                    height: 1.875em; /* 30px at 16px em */
-                }
+                padding: 2px;
 
                 .inbox-left-part {
                     grid-template: auto / auto min-content min-content;
@@ -171,7 +160,7 @@
                     display: flex;
                     align-items: center;
                     overflow: hidden;
-                    padding: 1px 6px;
+                    padding: 0 6px;
                     outline: 0;
 
                     & a {
@@ -197,11 +186,9 @@
                 }
 
                 &:focus {
-                    outline: 0;
-
-                    .inbox-focus-border {
-                        border-color: var(--color-outline-focus);
-                    }
+                    outline: 2px solid var(--color-outline-focus);
+                    outline-offset: -2px;
+                    border-radius: 3px;
 
                     .toggle-inbox-header-icon {
                         opacity: 1;
@@ -260,21 +247,21 @@
 
             .inbox-row {
                 user-select: none;
-                display: block;
+                display: flex;
                 background-color: var(--color-background-inbox-row);
+                min-height: 1.875em; /* 30px at 16px em */
+                padding: 2px;
+                box-sizing: border-box;
+                justify-content: space-between;
 
                 &:hover {
                     background: var(--color-background-inbox-row-hover);
                 }
 
                 &:focus {
-                    .inbox-focus-border {
-                        border: 2px solid var(--color-outline-focus);
-                        border-radius: 3px;
-                    }
-
-                    outline: 0;
-                    padding: 0;
+                    outline: 2px solid var(--color-outline-focus);
+                    outline-offset: -2px;
+                    border-radius: 3px;
                 }
 
                 .inbox-left-part {
