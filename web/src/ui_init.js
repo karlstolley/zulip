@@ -709,6 +709,9 @@ export async function initialize_everything(state_data) {
             }
         },
     });
+
+    sidebar_ui.initalize_sidebar_observers();
+
     drafts.initialize_ui();
     drafts_overlay_ui.initialize();
     // This needs to happen after activity_ui.initialize, so that user_filter

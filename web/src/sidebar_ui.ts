@@ -1,4 +1,5 @@
 import $ from "jquery";
+import assert from "minimalistic-assert";
 
 import render_left_sidebar from "../templates/left_sidebar.hbs";
 import render_buddy_list_popover from "../templates/popovers/buddy_list_popover.hbs";
@@ -46,6 +47,37 @@ export function restore_sidebar_toggle_status(): void {
         // avoid processing local storage state for hiding the right
         // sidebar.
         $("body").addClass("hide-right-sidebar");
+    }
+}
+
+export function observe_sidebar_intersection(root_selector: string, target_selector: string, callback: IntersectionObserverCallback, root_margin_top = 0): void {
+    const root_element = document.querySelector<HTMLElement>(root_selector);
+    const target_element = document.querySelector<HTMLElement>(target_selector);
+
+    const options = {
+        root: root_element,
+        rootMargin: `${root_margin_top}px 0px 0px 0px`,
+        threshold: [1, .95],
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    assert(target_element instanceof HTMLElement);
+
+    observer.observe(target_element);
+}
+
+function establish_observer_callback(header_selector: string): IntersectionObserverCallback {
+    return function(entries: Array<IntersectionObserverEntry>) {
+        const associated_header = document.querySelector(header_selector);
+        entries.forEach((entry) => {
+            console.log(entry.intersectionRatio);
+            if(entry.intersectionRatio < 1) {
+                associated_header?.classList.add("section-scrolled-up");
+            } else {
+                associated_header?.classList.remove("section-scrolled-up");
+            };
+        })
     }
 }
 
@@ -279,6 +311,14 @@ export function initialize(): void {
         },
         {capture: true},
     );
+}
+
+export function initalize_sidebar_observers(): void {
+    console.log("Narrow filter?", document.querySelector("#stream_filters .narrow-filter"));
+
+    observe_sidebar_intersection("#left_sidebar_scroll_container", "#direct-messages-list", establish_observer_callback("#direct-messages-section-header"));
+
+    observe_sidebar_intersection("#left_sidebar_scroll_container", "#stream_filters .narrow-filter", establish_observer_callback("#streams_header"), -28);
 }
 
 export function initialize_left_sidebar(): void {

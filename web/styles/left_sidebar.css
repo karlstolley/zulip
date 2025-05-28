@@ -182,7 +182,21 @@
     grid-template-rows: var(--line-height-sidebar-row-prominent);
     cursor: pointer;
     white-space: nowrap;
-    border-radius: 4px;
+    box-shadow: 0 1px 1px -1px transparent, 0 3px 4px -5px transparent, 0 4px 9px -10px transparent, 0 12px 12px -13px transparent;
+    transition: box-shadow 500ms;
+
+    &.section-scrolled-up:has(.rotate-icon-down) {
+        box-shadow: 0 1px 1px -1px hsl(0deg 0% 0% / 45%), 0 3px 4px -5px hsl(0deg 0% 0% / 60%), 0 4px 9px -10px hsl(0deg 0% 0% / 65%), 0 12px 12px -12px hsl(0deg 0% 0% / 50%);
+        /* We use a positioning context here to adjust the
+           z-index so that the shadow appears over top of
+           active sub-filters and hovered DM items. */
+        position: relative;
+        z-index: 5;
+    }
+
+    &:hover {
+        border-radius: 4px;
+    }
 
     /* Prevent hover styles set on other rows when zoomed in. */
     &:not(.zoom-in):hover {
@@ -1784,6 +1798,10 @@ li.topic-list-item {
             }
         }
     }
+}
+
+.section-scrolled-up:has(.rotate-icon-right) + #left_sidebar_scroll_container #streams_header.section-scrolled-up {
+    box-shadow: 0 1px 1px -1px hsl(0deg 0% 0% / 45%), 0 3px 4px -5px hsl(0deg 0% 0% / 60%), 0 4px 9px -10px hsl(0deg 0% 0% / 65%), 0 12px 12px -12px hsl(0deg 0% 0% / 50%);
 }
 
 .stream_search_section,
