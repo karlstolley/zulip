@@ -570,6 +570,10 @@
         }
     }
 
+    .inline-image {
+        display: inline;
+    }
+
     .twitter-tweet {
         border: 1px solid hsl(0deg 0% 87%);
         padding: 0.5em 0.75em;
