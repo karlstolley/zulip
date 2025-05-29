@@ -250,8 +250,10 @@ function postprocess_image_inlining_elements(html: string): string {
     const template = inertDocument.createElement("template");
     template.innerHTML = html;
 
+    // TODO: Clean up and rewrite a new class to replace
+    // the now-extra-confusing .message_inline_image class.
     for (const inline_img of template.content.querySelectorAll<HTMLImageElement>(
-        "div.message_inline_image > a > img",
+        "img.inline-image, div.message_inline_image > a > img",
     )) {
         inline_img.setAttribute("loading", "lazy");
         // We can't just check whether `inline_image.src` starts with
@@ -265,7 +267,11 @@ function postprocess_image_inlining_elements(html: string): string {
             // If the image source URL can't be parsed, likely due to
             // some historical bug in the Markdown processor, just
             // drop the invalid image element.
-            inline_img.closest("div.message_inline_image")!.remove();
+            if (inline_img.matches("img.inline-image")) {
+                inline_img.closest("img.inline-image")!.remove();
+            } else {
+                inline_img.closest("div.message_inline_image")!.remove();
+            }
             continue;
         }
 
@@ -274,7 +280,10 @@ function postprocess_image_inlining_elements(html: string): string {
             image_url.pathname.startsWith("/user_uploads/thumbnail/")
         ) {
             let thumbnail_name = thumbnail.preferred_format.name;
-            if (inline_img.dataset.animated === "true") {
+            if (
+                inline_img.matches("div.message_inline_image > a > img") &&
+                inline_img.dataset.animated === "true"
+            ) {
                 if (
                     user_settings.web_animate_image_previews === "always" ||
                     // Treat on_hover as "always" on mobile web, where
@@ -292,6 +301,29 @@ function postprocess_image_inlining_elements(html: string): string {
                 }
             }
             inline_img.src = inline_img.src.replace(/\/[^/]+$/, "/" + thumbnail_name);
+        }
+
+        // In case of inline images, we also need to add additional wrapper
+        // containers to img element since we just receive the img element from
+        // the server.
+        if (inline_img.matches("img.inline-image")) {
+            const original_src = inline_img.getAttribute("data-original-src")!;
+            const alt = inline_img.getAttribute("alt");
+            const anchor = inertDocument.createElement("a");
+
+            anchor.setAttribute("href", original_src);
+            if (alt) {
+                anchor.setAttribute("title", alt);
+            }
+
+            anchor.append(inline_img.cloneNode(true));
+            const span = inertDocument.createElement("span");
+            // TODO: Determine whether we really need the .message_inline_image
+            // wrapper class here. Need to check both the CSS applied as well as
+            // legacy image behavior, particularly inside galleries.
+            span.classList.add("message_inline_image", "inline-image-wrapper");
+            span.append(anchor);
+            inline_img.parentNode?.replaceChild(span, inline_img);
         }
     }
     return template.innerHTML;

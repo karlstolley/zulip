@@ -569,6 +569,22 @@
         }
     }
 
+    /* TODO: See if this .message_inline_image class is
+       worth preserving. Cf. postprocess_content.ts and
+       the TODO noted there.
+
+       TODO: If it won't add an outsize amount of churn,
+       consider adding a prep commit that renames the
+       .message_inline_image class.
+
+       TODO: We want all elements associated with inline
+       images to display inline, so this use of inline-grid
+       needs to go away, as well as any non-inline display
+       modes on the wrapper element, etc. */
+    .message_inline_image.inline-image {
+        display: inline-grid;
+    }
+
     .twitter-tweet {
         border: 1px solid hsl(0deg 0% 87%);
         padding: 0.5em 0.75em;
