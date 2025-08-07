@@ -150,6 +150,7 @@ const get_content_element = () => {
     $content.set_find_results("div.spoiler-header", $array([]));
     $content.set_find_results("div.codehilite", $array([]));
     $content.set_find_results(".message_inline_video video", $array([]));
+    $content.set_find_results("audio", $array([]));
 
     set_message_for_message_content($content, undefined);
 
@@ -536,6 +537,34 @@ run_test("timestamp without time", () => {
     rm.update_elements($content);
     assert.equal($timestamp.text(), "never-been-set");
 });
+
+run_test("audio", ({mock_template}) => {
+    mock_template("markdown_audio.hbs", true, (data, html) => {
+        assert.deepEqual(data, {something: "Heh"});
+        return html;
+    });
+
+    const $content = get_content_element();
+    const $audio = $.create("audio");
+
+    $audio.attr("src", "http://zulip.zulipdev.com/user_uploads/w/ha/tever/inline.mp3");
+
+    console.log("$audio", $audio.html());
+
+    $audio.replaceWith = noop;
+
+    $content.set_find_results("audio", $array([$audio]));
+
+    rm.update_elements($content);
+
+    console.log()
+
+    assert.equal(
+        $audio.html(),
+        "<um></um>",
+    );
+});
+
 
 run_test("timestamp", ({mock_template}) => {
     mock_template("markdown_timestamp.hbs", true, (data, html) => {

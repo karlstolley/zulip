@@ -5,6 +5,7 @@ import assert from "minimalistic-assert";
 
 import render_channel_message_link from "../templates/channel_message_link.hbs";
 import code_buttons_container from "../templates/code_buttons_container.hbs";
+import render_markdown_audio from "../templates/markdown_audio.hbs";
 import render_markdown_timestamp from "../templates/markdown_timestamp.hbs";
 import render_mention_content_wrapper from "../templates/mention_content_wrapper.hbs";
 import render_topic_link from "../templates/topic_link.hbs";
@@ -367,6 +368,52 @@ export const update_elements = ($content: JQuery): void => {
             });
         });
         $codehilite.addClass("zulip-code-block");
+    });
+
+    $content.find("audio").each(function (): void {
+        $(this).addClass("media-audio-element");
+        // We grab the audio HTML for inserting in the template
+        const audio_html = $(this)[0]?.outerHTML;
+
+        const rendered_audio = render_markdown_audio({
+            audio_html: audio_html,
+        });
+
+        $(this).replaceWith(rendered_audio);
+
+
+        /*
+
+        STUFF FOR FOLLOW UP COMMIT TO ADD THE ICON
+
+        <a class="media-audio-download icon-button icon-button-square icon-button-neutral"
+        aria-label="{{t 'Download' }}"
+        data-tippy-content="{{t 'Download' }}" href="{{ audio_source}}" download>
+            <i class="media-download-icon zulip-icon zulip-icon-download"></i>
+        </a>
+
+
+
+            $content.find("audio").each(function (): void {
+            $(this).addClass("media-audio-element");
+            // We grab the audio HTML for inserting in the template
+            const audio_html = $(this)[0]?.outerHTML;
+            // We also grab the source for duplicating it on a downloadable <a>
+            const audio_src = $(this).attr("src");
+            if (audio_src === undefined) {
+                return;
+            }
+
+            const rendered_audio = render_markdown_audio({
+                audio_html: audio_html,
+                audio_source: audio_src,
+            });
+
+            $(this).replaceWith(rendered_audio);
+        });
+
+
+        */
     });
 
     // Display emoji (including realm emoji) as text if
