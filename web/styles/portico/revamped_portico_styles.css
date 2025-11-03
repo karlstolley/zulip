@@ -1,0 +1,21 @@
+/* TODO: This file should be renamed to `portico_styles.css`
+   or something similar, once all portico pages take these
+   new, Bootstrap-free styles. */
+
+.portico-content-wrapper {
+    background: linear-gradient(
+        180deg,
+        var(--color-background-gradient-start) 0%,
+        var(--color-background-gradient-end) 100%
+    );
+
+    @media (prefers-color-scheme: dark) {
+        --color-background-box: hsl(221deg 35% 89%);
+
+        background: linear-gradient(
+            180deg,
+            var(--color-background-gradient-start) 30%,
+            var(--color-background-gradient-end) 100%
+        );
+    }
+}

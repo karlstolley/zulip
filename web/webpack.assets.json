@@ -60,6 +60,7 @@
         "./src/bundles/portico.ts",
         "./src/portico/landing-page.ts",
         "./styles/portico/portico_variables.css",
+        "./styles/portico/revamped_portico_styles.css",
         "./styles/portico/landing_page.css",
         "./styles/portico/pricing_plans.css"
     ],
@@ -78,6 +79,7 @@
         "./src/portico/landing-page.ts",
         "./src/portico/header.ts",
         "./styles/portico/portico_variables.css",
+        "./styles/portico/revamped_portico_styles.css",
         "./styles/portico/hello.css",
         "./styles/portico/navbar.css",
         "./styles/portico/footer.css",
