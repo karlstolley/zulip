@@ -74,6 +74,13 @@
         "./styles/portico/navbar.css",
         "./styles/portico/footer.css"
     ],
+    "revamped-landing-page": [
+        "./src/bundles/revamped_portico.ts",
+        "./src/portico/landing-page.ts",
+        "./styles/portico/portico_variables.css",
+        "./styles/portico/revamped_portico_styles.css",
+        "./styles/portico/navbar.css"
+    ],
     "plans-page": [
         "./src/bundles/hello.ts",
         "./src/portico/landing-page.ts",
