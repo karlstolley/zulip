@@ -10,21 +10,6 @@
     --height-price-details-min: 53px;
 
     padding: 102px 0 58px;
-    background: linear-gradient(
-        180deg,
-        var(--color-background-gradient-start) 0%,
-        var(--color-background-gradient-end) 100%
-    );
-
-    @media (prefers-color-scheme: dark) {
-        --color-background-box: hsl(221deg 35% 89%);
-
-        background: linear-gradient(
-            180deg,
-            var(--color-background-gradient-start) 30%,
-            var(--color-background-gradient-end) 100%
-        );
-    }
 
     ul {
         padding: 0;
