@@ -94,7 +94,9 @@ function hide_box(): void {
     $(".new_message_textarea").css("min-height", "");
     compose_fade.clear_compose();
     $(".message_comp").hide();
-    $("#compose_controls").show();
+    // TODO: We'll want to manage this with classes
+    // as part of the skinned compose box
+    $("#closed-compose-chrome").show();
     // Assume a muted recipient row for the next time
     // the compose box is reopened
     $("#compose-recipient").addClass("low-attention-recipient-row");
@@ -201,7 +203,9 @@ export function rewire_autosize_message_content(value: typeof autosize_message_c
 
 export let expand_compose_box = (): void => {
     $("#compose_close").attr("data-tooltip-template-id", "compose_close_tooltip_template");
-    $("#compose_controls").hide();
+    // TODO: We'll want to manage this with classes
+    // as part of the skinned compose box
+    $("#closed-compose-chrome").hide();
     $(".message_comp").show();
 };
 

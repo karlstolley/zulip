@@ -303,11 +303,11 @@ test("start", ({override, override_rewire, mock_template}) => {
     });
     $("textarea#compose-textarea").set_height(50);
 
-    assert_hidden("#compose_controls");
+    assert_hidden("#closed-compose-chrome");
     cancel();
     assert.ok(abort_xhr_called);
     assert.ok(pill_cleared);
-    assert_visible("#compose_controls");
+    assert_visible("#closed-compose-chrome");
     assert_hidden("#compose-direct-recipient");
     assert.ok(!compose_state.composing());
 });
