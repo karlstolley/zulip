@@ -103,7 +103,7 @@
 
     textarea:focus,
     textarea.new_message_textarea:focus,
-    #compose_recipient_box:focus {
+    #compose-channel-recipient:focus {
         border-color: hsl(0deg 0% 0% / 90%);
     }
 
