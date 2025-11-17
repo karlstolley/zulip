@@ -199,6 +199,7 @@ test("start", ({override, override_rewire, mock_template}) => {
     };
     start(opts);
 
+    assert.ok($("#compose").hasClass("compose-box-open"));
     assert_visible("#compose_recipient_box");
     assert_hidden("#compose-direct-recipient");
 
@@ -271,6 +272,7 @@ test("start", ({override, override_rewire, mock_template}) => {
 
     start(opts);
 
+    assert.ok($("#compose").hasClass("compose-box-open"));
     assert_hidden("input#stream_message_recipient_topic");
     assert_visible("#compose-direct-recipient");
 
@@ -303,12 +305,10 @@ test("start", ({override, override_rewire, mock_template}) => {
     });
     $("textarea#compose-textarea").set_height(50);
 
-    assert_hidden("#compose_controls");
     cancel();
     assert.ok(abort_xhr_called);
     assert.ok(pill_cleared);
-    assert_visible("#compose_controls");
-    assert_hidden("#compose-direct-recipient");
+    assert.ok(!$("#compose").hasClass("compose-box-open"));
     assert.ok(!compose_state.composing());
 });
 
