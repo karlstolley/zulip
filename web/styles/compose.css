@@ -1236,7 +1236,21 @@ textarea.new_message_textarea {
     outline-color: transparent;
 }
 
+#skinned-compose-controls {
+    display: none;
+}
+
+.composing-to-conversation-view {
+    #closed-compose-controls {
+        display: none;
+    }
+    #skinned-compose-controls {
+        display: block;
+    }
+}
+
 .compose-box-open {
+    #skinned-compose-controls,
     #closed-compose-controls {
         display: none;
     }
