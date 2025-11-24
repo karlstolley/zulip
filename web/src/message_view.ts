@@ -16,6 +16,7 @@ import * as compose_closed_ui from "./compose_closed_ui.ts";
 import * as compose_notifications from "./compose_notifications.ts";
 import * as compose_recipient from "./compose_recipient.ts";
 import * as compose_state from "./compose_state.ts";
+import * as compose_ui from "./compose_ui.ts";
 import * as condense from "./condense.ts";
 import * as feedback_widget from "./feedback_widget.ts";
 import type {FetchStatus} from "./fetch_status.ts";
@@ -1576,6 +1577,8 @@ function handle_post_view_change(
         compose_closed_ui.update_buttons();
     }
     compose_closed_ui.update_recipient_text_for_reply_button();
+
+    compose_ui.update_compose_box_by_narrow(filter.is_conversation_view());
 
     message_view_header.render_title_area();
 

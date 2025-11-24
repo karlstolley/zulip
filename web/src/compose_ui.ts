@@ -151,6 +151,14 @@ export function rewire_insert_and_scroll_into_view(
     insert_and_scroll_into_view = value;
 }
 
+export function update_compose_box_by_narrow(is_conversation_narrow: boolean): void {
+    if (is_conversation_narrow) {
+        $("#compose").addClass("composing-to-conversation-view");
+    } else {
+        $("#compose").removeClass("composing-to-conversation-view");
+    }
+}
+
 export function maybe_show_scrolling_formatting_buttons(container_selector: string): void {
     const button_container = document.querySelector(container_selector);
     const button_bar = document.querySelector(
