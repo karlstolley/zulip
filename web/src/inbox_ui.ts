@@ -17,6 +17,7 @@ import * as buddy_data from "./buddy_data.ts";
 import * as channel_folders from "./channel_folders.ts";
 import * as compose_closed_ui from "./compose_closed_ui.ts";
 import * as compose_state from "./compose_state.ts";
+import * as compose_ui from "./compose_ui.ts";
 import * as dialog_widget from "./dialog_widget.ts";
 import * as dropdown_widget from "./dropdown_widget.ts";
 import type {Filter} from "./filter";
@@ -312,6 +313,7 @@ function restore_inbox_view_state(): void {
 export function show(filter?: Filter): void {
     assert(hide_other_views_callback !== undefined);
     hide_other_views_callback();
+    compose_ui.update_compose_box_by_narrow(false);
     const was_inbox_already_visible = inbox_util.is_visible();
 
     // Check if we are already narrowed to the same channel view.

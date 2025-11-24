@@ -14,6 +14,7 @@ import * as activity from "./activity.ts";
 import * as blueslip from "./blueslip.ts";
 import * as buddy_data from "./buddy_data.ts";
 import * as compose_closed_ui from "./compose_closed_ui.ts";
+import * as compose_ui from "./compose_ui.ts";
 import * as dialog_widget from "./dialog_widget.ts";
 import * as dropdown_widget from "./dropdown_widget.ts";
 import type {DropdownWidget} from "./dropdown_widget.ts";
@@ -1412,6 +1413,7 @@ export function update_recent_view_rendered_time(): void {
 export function show(): void {
     assert(hide_other_views_callback !== undefined);
     hide_other_views_callback();
+    compose_ui.update_compose_box_by_narrow(false);
     // We remove event handler before hiding, so they need to
     // be attached again, checking for topics_widget to be defined
     // is a reliable solution to check if recent view was displayed earlier.
