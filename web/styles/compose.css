@@ -1223,8 +1223,23 @@ textarea.new_message_textarea {
     outline-color: transparent;
 }
 
+#skinned-closed-compose-box {
+    display: none;
+}
+
+.composing-to-conversation-narrow {
+    #legacy-closed-compose-box {
+        display: none;
+    }
+
+    #skinned-closed-compose-box {
+        display: block;
+    }
+}
+
 .compose-box-open {
-    #closed-compose-controls {
+    #skinned-closed-compose-box,
+    #legacy-closed-compose-box {
         display: none;
     }
 
