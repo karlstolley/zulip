@@ -25,6 +25,7 @@ type RecipientLabel = {
 
 function get_stream_recipient_label(stream_id: number, topic: string): RecipientLabel | undefined {
     const stream = stream_data.get_sub_by_id(stream_id);
+    console.log(stream);
     const topic_display_name = util.get_final_topic_display_name(topic);
     if (stream) {
         const recipient_label: RecipientLabel = {
