@@ -1578,6 +1578,8 @@ function handle_post_view_change(
     }
     compose_closed_ui.update_recipient_text_for_reply_button();
 
+    compose_closed_ui.update_closed_compose_box_class_by_narrow(filter.is_conversation_view());
+
     message_view_header.render_title_area();
 
     narrow_title.update_narrow_title(filter);
