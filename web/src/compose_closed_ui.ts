@@ -16,6 +16,17 @@ import * as recent_view_util from "./recent_view_util.ts";
 import * as stream_data from "./stream_data.ts";
 import * as util from "./util.ts";
 
+// This is likely a temporary function for supporting both the
+// new skinned compose box in conversation views and the legacy
+// closed compose box in home views, etc.
+export function update_closed_compose_box_class_by_narrow(is_conversation_narrow: boolean): void {
+    if (is_conversation_narrow) {
+        $("#compose").addClass("composing-to-conversation-narrow");
+    } else {
+        $("#compose").removeClass("composing-to-conversation-narrow");
+    }
+}
+
 type RecipientLabel = {
     label_text: string;
     has_empty_string_topic?: boolean;
