@@ -12,7 +12,54 @@
     </div>
     <div id="closed-compose-controls">
         <div id="skinned-closed-compose-box">
-            Skinned compose chrome goes here.
+            <div id="skinned-recipient-row">
+                <div id="skinned-channel-picker-wrapper">
+                    <!-- JS to populate this -->
+                    <div id="skinned-channel-picker">
+                        <!--
+                        We'd only need to update the `zulip-icon-xxx` value here.
+                        Channel icons will also need their color information as
+                        CSS variables, c/o the adjust_stream_privacy_icon_colors()
+                        function in `stream_color.ts`. If that ends up being a lot
+                        of work, we can try MVP'ing this with a set grayscale icon.
+
+                        For now, just duplicating what we'd get from
+                        `inline_decorated_channel_name.hbs`
+
+                        This will be needed somehow for DMs, plus the translated (?)
+                        DM label:
+
+                        <i class="zulip-icon zulip-icon-users channel-privacy-type-icon" aria-hidden="true"></i>
+
+                        -->
+                        <i class="zulip-icon zulip-icon-hashtag channel-privacy-type-icon" style="color: #F00" aria-hidden="true"></i> <span class="decorated-channel-name">some fairly long channel name that goes on and on for quite a while</span>
+                    </div>
+                </div>
+
+                <!-- This always displays as-is. No need to track the narrow. -->
+                <div id="skinned-marker-container">
+                    <div id="skinned-conversation-arrow" class="zulip-icon zulip-icon-chevron-right"></div>
+                </div>
+
+                <!-- JS to populate this -->
+                <!--
+                To start, let's piggy-back off of compose_closed_ui.ts for the DM
+                case, and display a list of names (held to a single line, with an
+                ellipsis) rather than wading into the headaches of trying to display
+                pills in this area for the skinned state.
+                -->
+                <div id="skinned-topic-box">
+                    <div id="skinned-topic-box-label">the name of the topic goes here and gets populated via JS</div>
+                    <!--
+                    This might wind up in a `skinned-controls-area` if we decide
+                    to have include a HUD for drafts, etc.
+                    -->
+                    <div id="skinned-topic-box-new-topic-button"></div>
+                </div>
+            </div>
+            <div id="skinned-messagebox">
+                {{t 'Write a message...'}}
+            </div>
         </div>
         <div id="legacy-closed-compose-box">
             <div class="reply_button_container">
