@@ -261,6 +261,27 @@
     }
 }
 
+.low-attention-recipient-row #compose-direct-recipient .pill-container {
+    &:has(.pill) {
+        /* In the low-attention state, prevent this from being
+           part of the flex layout on .pill-container when there
+           are already user pills (when the "Add user" text is
+           never displayed, as specified on the
+           .input:first-child:empty::before selector above). We
+           also zero out the padding and min-width so this collapses
+           to nothing. Absolute positioning in this state ensures
+           that it's never part of the document flow, for good measure.
+           We do not apply this outside the low-attention state, so that
+           the cursor sits in a reasonable location. */
+        #private_message_recipient {
+            flex: 0 0 0;
+            min-width: 0;
+            padding: 0;
+            position: absolute;
+        }
+    }
+}
+
 #invitee_emails_container .pill-container,
 #integration-url-filter-branches .pill-container {
     width: 100%;
