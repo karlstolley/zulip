@@ -117,13 +117,13 @@ Here is an
 [example](https://github.com/zulip/zulip/commit/084dd216f017c32e15c1b13469bcbc928cd0bce9)
 of a good commit message:
 
-> tests: Remove ignored realm_str parameter from message send test.
->
-> In commit
-> [8181ec4](https://github.com/zulip/zulip/commit/8181ec4b56abf598223112e7bc65ce20f3a6236b),
-> we removed the `realm_str` as a parameter for `send_message_backend`. This
-> removes a missed test that included this as a parameter for that
-> endpoint/function.
+```
+tests: Remove ignored realm_str parameter from message send test.
+
+In commit 8181ec4, we removed the `realm_str` as a parameter
+for `send_message_backend`. This removes a missed test that included
+this as a parameter for that endpoint/function.
+```
 
 The commit message is a key piece of how you communicate with reviewers and
 future contributors, and is no less important than the code you write. This
