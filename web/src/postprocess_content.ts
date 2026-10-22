@@ -410,28 +410,21 @@ function is_media_run_inline_with_text(media_elt: Element): boolean {
     const media_elt_previous_sibling_node = media_elt.previousSibling;
     const media_elt_next_sibling_node = media_elt.nextSibling;
 
-    // A standalone image in its own paragraph will have no sibling nodes
-    if (media_elt_previous_sibling_node === null && media_elt_next_sibling_node === null) {
-        return false;
-    }
-
-    // For images that have text nodes, we need to consider the nodeValue;
-    // these will be `null` for element nodes. We do not want to trim these
-    // values, because that would wipe out newlines, "\n", which we are
-    // interested in detecting.
-    const previous_sibling_node_value = media_elt_previous_sibling_node?.nodeValue;
-    const next_sibling_node_value = media_elt_next_sibling_node?.nodeValue;
-
-    // For images that have adjacent element nodes, we examine the nodeName.
-    const previous_sibling_node_name = media_elt_previous_sibling_node?.nodeName?.toLowerCase();
+    // We look for previous newlines and trailing break tags to establish
+    // whether users have moved media references to their own lines in
+    // the message source.
+    const previous_sibling_node_value = media_elt_previous_sibling_node?.nodeValue?.replaceAll(
+        "\n",
+        "NEWLINE",
+    );
     const next_sibling_node_name = media_elt_next_sibling_node?.nodeName?.toLowerCase();
 
-    // Any adjacent newlines or break tags mean that this image not run
-    // inline with text.
+    // A standalone image in its own paragraph will have no sibling nodes,
+    // while any previous newlines or trailing break tags mean an image
+    // is not run inline with text.
     if (
-        previous_sibling_node_value === "\n" ||
-        next_sibling_node_value === "\n" ||
-        previous_sibling_node_name === "br" ||
+        (media_elt_previous_sibling_node === null && media_elt_next_sibling_node === null) ||
+        previous_sibling_node_value === "NEWLINE" ||
         next_sibling_node_name === "br"
     ) {
         return false;
