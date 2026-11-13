@@ -396,14 +396,14 @@ License: ISC License
 Comment: Icon has been modified by Vlad Koborov
 
 Files: web/icons/message-edited.svg
-Copyright: 2013-2023 Cole Bemis (https://lucide.dev/icons/history)
+Copyright: 2013-2023 Cole Bemis (https://lucide.dev/icons/history, https://lucide.dev/icons/pencil)
 License: ISC License
-Comment: Icon has been modified by Karl Stolley
+Comment: Custom made out of Lucide icons by Daniel K
 
 Files: web/icons/message-moved.svg
 Copyright: 2013-2023 Cole Bemis (https://lucide.dev/icons/move-right)
 License: ISC License
-Comment: Icon has been modified by Karl Stolley
+Comment: Custom made out of Lucide icons by Daniel K
 
 Files: web/icons/message-square-text.svg
 Copyright: 2013-2023 Cole Bemis, Lucide Contributors 2025 (https://lucide.dev/icons/message-square-text)
